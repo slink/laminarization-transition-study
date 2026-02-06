@@ -1,0 +1,7 @@
+Re,S,Lambda,regime,converged,viscosity_ratio
+100,0.1,0.1,laminar,True,7.194352500181165
+300,0.05,0.5,laminar,True,8.789969956181306
+500,0.01,0.1,laminar,True,9.574237522221361
+500,0.1,0.0,turbulent,True,28.092152682318968
+500,0.1,0.5,turbulent,True,27.951402576231825
+1000,0.1,5.0,turbulent,True,49.24935568211552

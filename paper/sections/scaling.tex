@@ -1,0 +1,193 @@
+\section{Discussion and Scaling}
+
+Although motivated by sediment-laden coastal boundary layers, the
+stratification--shear interaction explored here is generic: the regime
+boundaries and non-monotonic topology are properties of
+Richardson-number-damped oscillatory shear flows and may apply to other
+stratified oscillatory systems (e.g., thermally stratified tidal boundary
+layers or particle-laden pulsatile flows).
+
+\subsection{Critical stratification scaling}
+
+The critical stratification parameter $\Lambda_c$ is extracted as the
+boundary between turbulent and laminar regimes in the phase diagram.  We
+seek a reduced scaling law of the form
+\begin{equation}
+  \Lambda_c = f(Re,\, S),
+  \label{eq:scaling}
+\end{equation}
+fitted to the computed regime boundary.  Table~\ref{tab:lambda-c} and
+Fig.~\ref{fig:critical-lambda} show $\Lambda_c(Re)$ for the two
+lowest settling numbers ($S = 0.005$ and $S = 0.01$), where the
+transition is sharp and well-defined.
+
+The first laminar onset $\Lambda_\ell$ is $O(0.1\text{--}2.0)$,
+substantially higher than pre-correction estimates, and varies with
+both $Re$ and $S$ (Table~\ref{tab:lambda-c}).  At fixed $S$, the onset
+generally shifts to lower $\Lambda$ with increasing $Re$, but this
+trend is not monotonic.  The settling number controls how effectively
+sediment distributes vertically to establish the stratification that
+damps the mixing length.
+
+This saturation is reminiscent of the flux Richardson number ceiling observed
+in stratified shear layers, where turbulence self-limits at
+$Ri_f \approx 0.2$--$0.25$ regardless of the imposed shear
+\citep{osborn1980}. In the present model the analogous constraint is the
+critical gradient Richardson number $Ri_c = 0.25$ of the linear damping
+function; once the flow is sufficiently energetic to maintain turbulence, the
+onset of laminarisation depends on whether the sediment-induced $Ri_g$ can
+exceed $Ri_c$ locally, which is governed by $\Lambda$ and $S$ rather than
+$Re$.
+
+Power-law fits of the form $\Lambda_\ell \sim Re^a S^b$ do not produce
+a convincing collapse.  Moreover, the non-monotonic transition topology
+renders a single scaling law ill-posed: the first laminar onset
+$\Lambda_\ell$ does not uniquely characterise the regime boundary because
+turbulence recovers at a re-entrant value $\Lambda_r > \Lambda_\ell$ at
+most $(Re, S)$.  Any reduced description must account for both the onset
+and recovery boundaries, which likely require separate parameterisations.
+DNS or LES at selected $(Re, S, \Lambda)$ points near the predicted
+phase boundary would provide the most direct test of the
+algebraic-closure predictions and help distinguish physical from
+closure-induced features of the regime map.
+
+\subsection{Drag coefficient behaviour}
+
+The production diagnostics (Table~\ref{tab:phase4},
+Fig.~\ref{fig:production-diagnostics}a) reveal that among the turbulent
+cases, $c_f$ at $Re = 300$ is nearly uniform ($c_f \approx 0.086$),
+consistent with the oscillatory boundary layer structure at moderate
+$Re$, where the bed shear stress is dominated by the
+pressure-gradient-driven oscillation rather than turbulent Reynolds
+stresses.  The weakly turbulent $Re = 200$ cases have $c_f \approx 0.103$,
+higher than all other turbulent cases, reflecting the thicker boundary
+layer at low $Re$.
+
+At higher $Re$, $c_f$ decreases systematically: $c_f \approx 0.070$ at
+$Re = 500$, $c_f \approx 0.058$--$0.059$ at $Re = 750$, and
+$c_f \approx 0.052$--$0.054$ at $Re = 1000$.  This reduction follows the
+expected scaling $c_f \sim Re^{-1/2}$ for oscillatory boundary layers,
+where the viscous sublayer thins relative to the Stokes layer thickness
+$\delta_s = \sqrt{2\nu/\omega}$.
+
+\subsection{Kinetic energy and stratification}
+
+The cycle-averaged kinetic energy $\langle KE \rangle$
+(Fig.~\ref{fig:production-diagnostics}b) spans
+$\langle KE\rangle = 2.07$--$3.03$ across all Phase~4 cases, with
+cases far from the transition boundary clustering near
+$\langle KE\rangle \approx 2.8$--$3.0$.  The lowest kinetic energies
+correspond to high-$Re$ cases near the transition ($Re = 1000$,
+$S = 0.01$, $\Lambda = 0.25$: $\langle KE\rangle = 2.07$), where
+stratification partially suppresses the velocity profile even though
+the flow remains turbulent.
+
+\subsection{Non-monotonic transitions and re-entrant boundaries}
+
+The non-monotonic regime behaviour identified at $S = 0.005$
+across all $Re \geq 300$, and at $S = 0.01$ for $Re = 300$,
+(Fig.~\ref{fig:viscosity-slices}, \S\,\ref{sec:nonmono})
+is the most unexpected finding of this study.  Rather than a single
+critical $\Lambda_c$ separating turbulent and laminar regimes, the
+phase boundary is re-entrant: the flow laminarizes at intermediate
+$\Lambda$ but recovers turbulence at high $\Lambda$.
+
+We attribute this to the competition between two mechanisms:
+\begin{enumerate}
+\item \textbf{Direct stratification damping.}  Increasing $\Lambda$
+  strengthens the stable density gradient, raising $Ri_g$ and damping
+  the mixing length via $f(Ri_g) = \max(0,\, 1 - Ri_g/Ri_c)$.
+
+\item \textbf{Concentration profile adjustment.}  At moderate
+  $\Lambda$, the sediment concentration profile adjusts:  enhanced
+  turbulent diffusion redistributes sediment, reducing the concentration
+  gradient $\partial_z C$ and hence $Ri_g$ in the outer layer.  The
+  resulting reduction in stratification allows turbulence to re-establish.
+\end{enumerate}
+
+At high $S$ (fast settling), sediment remains confined near the bed
+regardless of $\Lambda$, so the stratification never extends into the
+outer layer.  This explains why $S = 0.5$ cases at $Re = 300$ remain
+uniformly turbulent ($\langle\nu_t\rangle/\nu \approx 12.1$--$12.2$)
+across all $\Lambda$: fast settling prevents the sediment
+redistribution required for either laminarization or re-entrance.
+
+\subsection{Phase portrait classification}
+
+The phase portraits (Fig.~\ref{fig:phase-portraits}) provide a
+complementary view of the regime structure.  The $(u_{\mathrm{bed}},
+\tau_{\mathrm{bed}})$ trajectory traces an elliptical orbit whose
+shape reflects the balance between oscillatory forcing and turbulent
+dissipation.  The Phase~4 set spans weakly turbulent ($Re=200$,
+$\langle\nu_t\rangle/\nu \approx 12.7$) to strongly turbulent
+($Re \geq 300$) cases, and the portraits illustrate the spectrum
+of turbulent intensities: near-threshold turbulent cases
+($\langle\nu_t\rangle/\nu \approx 16.5$) produce tighter orbits
+with lower $\tau_{\mathrm{bed}}$ amplitude, while strongly turbulent
+cases ($\langle\nu_t\rangle/\nu \approx 51.4$) produce broader loops.
+This continuous variation is consistent with the algebraic closure model,
+which produces a smooth $\nu_t$ field.  A more physically complete model
+(e.g., $k$-$\omega$) might produce sharper hysteresis in the phase
+portrait, which would be an informative comparison for future work.
+
+\subsection{Sensitivity to damping function}
+\label{sec:damping_sensitivity}
+
+To assess whether the regime topology depends on the choice of stratification
+damping function, we repeat the full parameter sweep replacing the linear
+closure $f(Ri_g) = \max(0,\, 1 - Ri_g/Ri_c)$ with a continuous exponential
+form $f(Ri_g) = \exp(-Ri_g/Ri_c)$, which permits nonzero eddy viscosity at
+all~$Ri_g$.  Figure~\ref{fig:damping_comparison} compares the regime
+classifications at $S = 0.005$ and $S = 0.01$.
+
+\figDampingComparison{}
+
+The qualitative phase topology is preserved under exponential damping,
+with the first laminar onset $\Lambda_\ell$ shifting to substantially
+higher values.  At $S = 0.005$, for example, $\Lambda_\ell \approx 0.25$
+with linear damping at $Re = 1000$ shifts to $\Lambda_\ell \approx 1.0$
+with exponential damping; at lower $Re$, the exponential closure delays
+the transition to $\Lambda \geq 2$--$5$.  The shift reflects the softer
+cutoff of the exponential function, which sustains nonzero $\nu_t$ at
+supercritical $Ri_g$ and thereby delays the collapse into the laminar
+state.
+
+The non-monotonic topology is also modified: the re-entrant behaviour
+observed under linear damping at low $S$ is suppressed under exponential
+damping, where the sustained $\nu_t$ at high $Ri_g$ prevents the sharp
+feedback that drives the re-entrance.  At $Re = 300$, $S = 0.1$, all
+cases remain turbulent under exponential damping.  This suggests that
+while the laminarization transition is a robust feature of both closures,
+the re-entrant recovery is sensitive to the sharpness of the damping
+function and may be amplified by the hard cutoff in the linear closure.
+While the concentration-profile adjustment mechanism is physically
+plausible, the existence and width of the re-entrant turbulent band
+depend sensitively on the sharpness of Richardson-number damping.  The
+present results therefore demonstrate a \emph{closure-robust}
+laminarization transition---the onset of turbulence suppression at
+intermediate $\Lambda$ is preserved across both closures---but only a
+\emph{closure-contingent} re-entrant recovery, whose quantitative
+boundaries require validation against DNS or higher-fidelity closures.
+
+\subsection{Limitations and outlook}
+
+Several limitations of the present study should be noted.  First, the
+one-dimensional model with algebraic closure cannot capture
+three-dimensional turbulent structures or secondary instabilities that
+may be important near the transition.  Second, the classification
+threshold $\langle\nu_t\rangle/\nu = 10$ is a pragmatic choice; a more
+physical criterion based on turbulent kinetic energy budgets would
+strengthen the regime identification.  Third, the non-monotonic
+behaviour at low $S$ warrants investigation with longer integrations or
+ensemble runs to characterise the intermittent regime statistically, and
+the sensitivity of re-entrant behaviour to the damping function
+(\S\,\ref{sec:damping_sensitivity}) suggests that the closure choice
+materially affects the predicted topology.
+
+Future work should address: (i)~scaling collapse of the transition data
+to test whether a combined parameter $\Lambda_c S^\alpha Re^\beta$
+unifies the regime boundary, (ii)~phase portrait analysis for
+hysteresis detection through forward and backward $\Lambda$ ramps,
+and (iii)~comparison with DNS results at selected $(Re, S, \Lambda)$
+points to assess the fidelity of the algebraic closure near the
+bifurcation.

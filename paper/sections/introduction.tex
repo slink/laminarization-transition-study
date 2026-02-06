@@ -1,0 +1,30 @@
+\section{Introduction}
+
+Oscillatory boundary layers driven by surface waves control the transport of
+sediment in coastal and continental-shelf environments. Standard engineering
+models assume fully turbulent conditions, parameterizing bed shear stress
+through empirical drag coefficients and eddy-viscosity closures. However,
+field measurements and laboratory experiments have demonstrated that
+sufficiently high suspended-sediment concentrations can stratify the boundary
+layer, suppress turbulent mixing, and trigger a transition to a laminar-like
+flow regime \citep{winterwerp2001,ozdemir2010,lamb2004}. This laminarization alters effective drag, changes
+sediment flux scaling, and invalidates standard closures.
+
+Despite repeated observations, and although partial regime mappings have been
+reported in DNS and LES studies \citep{ozdemir2010,cantero2009}, no systematic,
+continuous parameter sweep spanning the full three-parameter space has been
+performed; existing DNS and LES studies provide regime classifications at
+discrete parameter points but do not map the complete $(Re, S, \Lambda)$
+surface. Existing studies report thresholds in terms of local
+parameters, but the regime space defined by the wave Reynolds
+number $Re = U_0 \delta / \nu$, the settling number $S = w_s / U_0$, and the
+stratification parameter $\Lambda = g \beta C_0 \delta / U_0^2$ (the ratio of
+buoyancy forces from suspended sediment to oscillatory inertial forces) has not
+been swept continuously.
+
+We address this gap computationally. By coupling the vertically resolved
+momentum equation with a sediment advection--diffusion equation and an
+algebraic turbulence closure damped by the gradient Richardson number, we sweep
+the $(Re, S, \Lambda)$ parameter space to identify the critical surface
+$\Lambda_c(Re, S)$ separating turbulent and laminar regimes.
+Although motivated by coastal sediment transport, the underlying stratification-turbulence interaction is generic, and the regime boundaries identified here may inform other stratified oscillatory shear flows, subject to the closure limitations discussed below.

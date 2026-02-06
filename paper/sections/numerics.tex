@@ -1,0 +1,72 @@
+\section{Numerical Method}
+
+\subsection{Spatial discretization}
+
+The vertical domain $[0, H]$ is discretized on a stretched grid using the
+mapping
+\begin{equation}
+  z(\xi) = H \left[1 - \frac{\tanh\!\bigl(\gamma(1-\xi)\bigr)}{\tanh(\gamma)}\right],
+  \qquad \xi \in [0,1],
+  \label{eq:grid}
+\end{equation}
+where $\gamma$ controls the clustering of points near the bed. Derivatives
+in physical space use second-order non-uniform finite differences applied
+directly in physical $z$-coordinates, avoiding consistency errors from
+chain-rule transformations through computational space. The
+variable-coefficient diffusion operator
+$\partial_z[\nu(z)\,\partial_z\,\cdot\,]$ is discretized using a
+conservative finite-volume stencil and assembled as a tridiagonal matrix.
+
+\subsection{Time integration}
+
+We use an IMEX (implicit--explicit) Euler scheme. At each timestep the
+turbulent viscosity $\nu_t^n$ is computed from the current fields and
+frozen. The momentum equation is advanced as
+\begin{equation}
+  (I - \Delta t\, L_\nu)\, u^{n+1}
+  = u^n + \Delta t\, F_0 \sin(\omega t^n),
+  \label{eq:imex_u}
+\end{equation}
+where $L_\nu$ is the tridiagonal diffusion operator with effective
+viscosity $\nu + \nu_t^n$. The sediment equation is advanced as
+\begin{equation}
+  (I - \Delta t\, L_D)\, C^{n+1}
+  = C^n - \Delta t\, \partial_z(w_s\, C^n),
+  \label{eq:imex_c}
+\end{equation}
+with $L_D$ built from $D_t = \nu_t^n / Sc_t$ and the settling flux
+discretized with first-order upwind differencing. First-order upwinding
+is chosen for its unconditional monotonicity, which prevents unphysical
+negative concentrations and suppresses spurious oscillations near sharp
+concentration gradients. The associated numerical diffusion, however,
+smooths vertical concentration gradients, reducing the local gradient
+Richardson number $Ri_g$ and potentially biasing the critical
+stratification parameter $\Lambda_c$ toward higher values---i.e., the
+model may underestimate the effectiveness of stratification in
+suppressing turbulence. The net effect is a bias toward
+over-stabilization: the reported $\Lambda_c$ values should therefore be
+regarded as conservative upper bounds. Higher-order flux-limited schemes (e.g., TVD
+methods) would reduce this diffusive bias and are a candidate for future
+refinement. Both implicit systems are solved by the Thomas algorithm.
+
+\subsection{Timestep selection}
+
+Implicit diffusion removes the diffusive CFL restriction. The timestep is
+set by the explicit settling term:
+$\Delta t = \mathrm{CFL} \cdot \Delta z_{\min} / \max(w_s, U_0)$
+with $\mathrm{CFL} = 0.4$.
+
+\subsection{Cycle-averaged viscosity ratio}
+
+The turbulent viscosity ratio used for regime classification is
+$\langle\nu_t\rangle/\nu$, where $\langle\cdot\rangle$ denotes a
+cycle average followed by a domain average.  The cycle average
+$\bar{\nu}_t(z)$ is computed over the final oscillation period.  The
+domain average is evaluated via trapezoidal integration on the
+stretched grid:
+\begin{equation}
+  \langle\nu_t\rangle = \frac{1}{H}\int_0^H \bar{\nu}_t(z)\,\mathrm{d}z,
+  \label{eq:nut_avg}
+\end{equation}
+which accounts for the non-uniform spacing inherent in the grid
+mapping~\eqref{eq:grid}.

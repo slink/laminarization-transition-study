@@ -1,0 +1,15 @@
+# Jensen, Sumer & Fredsoe (1989), Fig. 11: wave friction factor f_w
+# Digitized from the original paper.
+# Re_a = U_0^2 / (omega * nu) is Jensen's convention.
+# Re_delta = U_0 * delta / nu (delta = sqrt(2*nu/omega)) is our convention.
+# Relation: Re_a = Re_delta^2 / 2, i.e. Re_delta = sqrt(2 * Re_a).
+Re_a,fw,Re_delta
+77680.09,0.22627,394.2
+322373.07,0.11436,803.0
+734308.74,0.07533,1212.0
+1557602.35,0.05064,1764.8
+2730479.09,0.05435,2337.1
+6497764.40,0.05599,3604.6
+15120002.17,0.04252,5500.7
+37043988.28,0.03502,8606.7
+66146490.09,0.02799,11503.9

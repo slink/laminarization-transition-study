@@ -1,0 +1,183 @@
+\section{Background and Prior Work}
+
+\subsection{Oscillatory boundary layers}
+
+The classical theory of oscillatory boundary layers originates with
+\citet{stokes1851}, who derived the exact laminar solution for flow driven by a
+sinusoidally oscillating free stream above a flat plate. The solution reveals
+that viscous effects are confined to a thin layer of thickness
+$\delta_s = \sqrt{2\nu/\omega}$, the Stokes length, which serves as the
+fundamental length scale for all subsequent work on oscillatory boundary layers.
+This elegant analytical result remains the baseline against which turbulent
+oscillatory flows are compared \citep{schlichting2017}.
+
+The transition from laminar to turbulent flow in oscillatory boundary layers has
+been investigated through a combination of experiment, linear stability
+analysis, and direct computation. \citet{vonkerczek1974}
+performed a linear stability analysis of the Stokes layer, establishing critical
+Reynolds number estimates for the onset of instability. \citet{hino1976,hino1983} conducted pipe-flow experiments that identified a
+sequence of flow regimes with increasing Reynolds number: disturbed-laminar,
+intermittent-turbulent, and fully turbulent. \citet{akhavan1991a,akhavan1991b} carried out systematic experimental and
+numerical investigations of transition in bounded oscillatory flows, providing
+detailed measurements of the velocity field and Reynolds stresses through the
+transition process. On the fully turbulent side, the landmark experiments of
+\citet{jensen1989} measured velocity profiles and
+turbulence statistics at high Reynolds numbers over smooth beds, establishing
+benchmark data that have been widely used for model validation. \citet{sleath1987} extended experimental investigations to rough beds, while
+\citet{jonsson1966} developed wave friction factor relationships,
+and \citet{grantmadsen1979} formulated the widely used
+wave--current boundary layer model. The
+textbooks of \citet{fredsoe1992} and \citet{nielsen1992} synthesized much of this body of work into standard
+references for coastal boundary layer dynamics.
+The present study is restricted to hydraulically smooth beds; the additional
+complications introduced by bed roughness---including form drag and modified
+near-bed turbulence production---are beyond the present scope.
+
+Numerical simulation has played an increasingly important role in elucidating
+the physics of oscillatory boundary layers. \citet{spalart1989} performed early direct numerical simulations (DNS) of
+oscillatory wall-bounded flows. \citet{vittori1998} used DNS
+to study transition mechanisms in detail, while \citet{costamagna2003} identified coherent structures and their role in
+turbulence production and transport. \citet{salon2007}
+applied large-eddy simulation to the turbulent Stokes boundary layer, and
+\citet{scandura2007} examined the structure of wall turbulence during
+the cycle. More recently, \citet{ozdemir2014}
+conducted DNS of smooth-walled Stokes layer transition, providing a detailed
+characterisation of the intermittent turbulence regime. Experimentally,
+\citet{carstensen2010,carstensen2012} documented
+the formation and evolution of coherent structures and turbulent spots during
+transition, and \citet{mier2021} contributed further observations
+of transitional dynamics.
+
+A common feature of nearly all of the studies cited above is that they consider
+clear-fluid oscillatory boundary layers, in which density is uniform and the
+turbulence dynamics are governed solely by shear. In many geophysical and
+engineering applications, however, the boundary layer carries suspended sediment
+whose concentration gradients introduce stable density stratification. The
+resulting interaction between turbulence, sediment transport, and buoyancy
+forces can fundamentally alter the transition process and even suppress
+turbulence entirely---a phenomenon broadly termed laminarization. Despite its
+practical importance, this coupled problem has received far less systematic
+attention than its clear-fluid counterpart, motivating the present
+investigation.
+
+\subsection{Sediment stratification and turbulence suppression}
+
+Suspended sediment introduces a stable density stratification that opposes
+vertical turbulent mixing. The competition between stabilizing buoyancy and
+destabilizing shear is quantified by the gradient Richardson number,
+$Ri_g = -(g/\rho)(\partial\rho/\partial z) / (\partial u/\partial z)^2$.
+\citet{miles1961} and \citet{howard1961} established that
+$Ri_g > 1/4$ everywhere is a necessary condition for the stability of an
+inviscid stratified shear flow, a result that underpins all subsequent
+turbulence damping criteria. The foundational treatment of buoyancy effects in
+turbulent flows is given by \citet{turner1973}; more recently, \citet{ivey2008} reviewed the subtle relationship between
+stratification, turbulence, and irreversible mixing.
+
+A well-known limitation of $Ri_g$-based closures arises in oscillatory flows,
+where the mean shear $\partial u/\partial z$ passes through zero twice per
+cycle. Near these flow-reversal phases the instantaneous $Ri_g$ becomes
+singular or extremely large, even though the flow may remain dynamically
+unstable due to residual turbulent kinetic energy and finite-amplitude
+perturbations. This phase-dependent singularity complicates any closure that
+relies on the local, instantaneous Richardson number and motivates caution in
+interpreting cycle-phase-resolved results.
+
+Observational and experimental evidence for sediment-induced stratification
+effects has accumulated over several decades. \citet{trowbridge1994} documented fluid-mud dynamics on the Amazon continental
+shelf, where high near-bed sediment concentrations created strong density
+gradients that suppressed turbulent momentum transfer. \citet{friedrichs2000} showed that fine-sediment accumulation in coastal
+seas is closely linked to boundary-layer stratification processes, and \citet{wright2006} reviewed gravity-driven transport on continental
+shelves, emphasizing the role of wave-supported fluid muds. \citet{winterwerp2001,winterwerp2006} systematically examined stratification
+effects across a wide range of sediment concentrations, from dilute
+non-cohesive suspensions to dense cohesive muds, identifying concentration
+thresholds beyond which turbulence is effectively quenched. \citet{lamb2004} measured the turbulent structure of high-density
+suspensions formed under waves, providing direct evidence of damped Reynolds
+stresses at elevated concentrations. \citet{dohmenjanssen1999,dohmenjanssen2002} documented grain-size-dependent
+phase lags and transport rates in oscillatory sheet flow, highlighting the
+role of vertical sediment distribution in controlling near-bed dynamics.
+
+Direct numerical simulations have clarified the underlying mechanisms. \citet{cantero2009} simulated stratification effects in
+sediment-laden turbulent channel flow, demonstrating progressive turbulence
+suppression as the concentration---and hence the bulk Richardson
+number---increased beyond a critical level. \citet{cantero2012}
+extended this work toward universal criteria for turbulence suppression in
+dilute turbidity currents. Most directly relevant to the present study, \citet{ozdemir2010} performed DNS of fine-particle-laden
+oscillatory channel flow and showed that particle-induced density stratification
+can fundamentally alter the flow regime, driving a transition from fully
+turbulent to an intermittent or laminar-like state. \citet{ozdemir2010} observed relaminarization at bulk Richardson numbers of
+$O(10^{-2}\text{--}10^{-1})$, which is broadly consistent with the critical
+$\Lambda_c$ values found in the present study; however, direct quantitative
+comparison is complicated by differences in the turbulence treatment (DNS
+versus algebraic closure). In a broader context,
+relaminarization phenomena across fluid mechanics were reviewed by \citet{narasimha1979}; more recent examples in non-sediment contexts
+include the pulsatile pipe flow experiments of \citet{greenblattmoss2004} and the transient channel flow study of \citet{heseddighi2013}. \citet{floresriley2011}
+used DNS to analyze turbulence collapse in the stably stratified surface layer.
+\citet{balachandar2010} provided an extensive review of
+turbulent dispersed multiphase flows, including two-way coupling effects
+relevant to particle-laden boundary layers.
+
+Despite this body of work, a systematic mapping of the transition from turbulent
+to laminar-like conditions as a function of the governing dimensionless
+groups---the Reynolds number $Re$, settling number $S$, and stratification
+parameter $\Lambda$---has not been undertaken. Existing studies identify
+thresholds in terms of local parameters for specific flow configurations, but no
+unified phase diagram delineates the critical stratification
+$\Lambda_c(Re, S)$ at which turbulence collapses in oscillatory boundary layers.
+The present study addresses this gap through a comprehensive computational sweep
+of the $(Re, S, \Lambda)$ parameter space.
+
+\subsection{Turbulence closures for stratified boundary layers}
+
+The simplest algebraic turbulence closure is the Prandtl mixing-length model
+\citep{prandtl1925}, which prescribes the eddy viscosity as
+$\nu_t = \kappa^2 z^2 |\partial u/\partial z|$, where $\kappa \approx 0.41$ is
+the von K\'arm\'an constant and $z$ is the distance from the wall. \citet{vandriest1956} introduced an exponential damping factor to enforce the
+correct near-wall scaling in the viscous sublayer. Despite its simplicity, this
+algebraic closure remains widely used in boundary-layer studies where the
+turbulence structure is well characterised by a single length scale. More
+sophisticated approaches include the $k$--$\varepsilon$ model
+\citep{launderspalding1974}, the $k$--$\omega$ model \citep{wilcox1988}, and the
+hierarchy of second-moment closures developed by \citet{melloryamada1974,melloryamada1982}, the latter being especially prevalent
+in geophysical and ocean modelling. \citet{rodi1987} reviewed turbulence
+models for stratified flows, and \citet{pope2000} provides the
+comprehensive modern reference for turbulent flow closure methods.
+
+Stable density stratification suppresses vertical mixing, and this effect is
+commonly parameterised through a damping function of the gradient Richardson
+number $Ri_g$. One of the earliest such formulations was proposed by \citet{munkanderson1948}. A particularly transparent form is the linear
+damping function $f(Ri_g) = \max(0,\, 1 - Ri_g/Ri_c)$, where the critical
+value $Ri_c = 0.25$ follows from the Miles--Howard stability criterion
+\citep{miles1961,howard1961}: stratification progressively suppresses turbulent
+momentum transfer as $Ri_g$ increases, and the eddy viscosity vanishes entirely
+when $Ri_g \geq Ri_c$. We note that $Ri_c = 0.25$ is adopted here as a model
+parameter rather than a strict physical stability threshold, since the
+Miles--Howard criterion is strictly inviscid and applies to linear
+perturbations of a parallel shear flow. This simple closure captures the essential bifurcation
+between turbulent and laminar-like states. Validation of
+stratification--turbulence interaction has been provided by direct numerical
+simulation and large-eddy simulation studies. \citet{armenio2002} and \citet{taylorsarkar2005}
+examined stratified channel and open-channel flows, while \citet{taylorsarkar2008} extended this work to stratified Ekman layers.
+\citet{brethouwer2007} analysed the scaling regimes of
+strongly stratified turbulence, \citet{zontaetal2012} constructed a phase diagram for turbulence and internal
+waves in stably stratified channel flow, and \citet{matervenayagamoorthy2014} proposed a unifying parameterisation framework
+linking turbulent diffusivity to stratification strength. \citet{ivey2008} reviewed the broader relationship between
+stratification, turbulence intensity, and mixing efficiency.
+
+In the present study, we deliberately adopt the simplest closure that captures
+the laminarization bifurcation: a mixing-length model with linear
+Richardson-number suppression. Because our objective is regime
+classification---identifying the critical surface $\Lambda_c(Re,\, S)$ that
+separates turbulent and laminarized states---rather than quantitative prediction
+of turbulent fluxes, an algebraic closure is sufficient. More elaborate models
+($k$--$\varepsilon$, $k$--$\omega$, second-moment closures) may refine the
+location of the critical surface and are natural targets for future work, but
+they introduce additional model parameters and transport equations that are
+unnecessary for the bifurcation analysis pursued here. The specific
+implementation of the eddy-viscosity model and its coupling to the sediment
+transport equations are detailed in the following section. It should be noted
+that the location of $\Lambda_c$ is expected to be sensitive to the choice of
+damping function. Alternative forms---such as exponential damping
+$f(Ri_g) = \exp(-Ri_g/Ri_c)$ or quadratic suppression---would produce smoother
+or more gradual turbulence attenuation and likely shift the critical surface
+quantitatively, though the qualitative bifurcation between turbulent and
+laminar-like states should persist.

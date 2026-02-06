@@ -1,0 +1,172 @@
+\documentclass[aip,amsmath,amssymb,reprint]{revtex4-2}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{dcolumn}
+\usepackage{bm}
+\usepackage{mathptmx}
+
+% ---------------------------------------------------------------------------
+% Figure macros (AIP format: figure* for wide, figure for single-column)
+% ---------------------------------------------------------------------------
+
+\newcommand{\figGridConvergence}{%
+  \begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{figures-aip/grid_convergence.pdf}
+  \caption{Grid convergence of cycle-averaged viscosity ratio for six
+  representative cases.  The dashed line marks the
+  $\langle\nu_t\rangle/\nu = 10$ threshold separating laminar and
+  turbulent regimes.  Clearly laminar and turbulent cases converge
+  quickly; near-transition cases require $N \geq 128$.}
+  \label{fig:grid-convergence}
+  \end{figure}
+}
+
+\newcommand{\figRegimeDiagram}{%
+  \begin{figure*}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures-aip/regime_diagram.pdf}
+  \caption{Regime classification in the $(Re, \Lambda)$ plane for each
+  settling number $S$.  Red squares: turbulent; blue circles: laminar.
+  Data from Phases~1 and~3 (601~converged cases).  Low $S$ (slow settling)
+  admits a transition at moderate $\Lambda$ that is often non-monotonic;
+  high $S$ (fast settling) confines sediment near the bed, leaving
+  turbulence undamped.}
+  \label{fig:regime-diagram}
+  \end{figure*}
+}
+
+\newcommand{\figViscositySlices}{%
+  \begin{figure*}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures-aip/viscosity_slices.pdf}
+  \caption{Cycle-averaged viscosity ratio versus stratification parameter
+  $\Lambda$ for six $(Re, S)$ slices.  Dashed line:
+  $\langle\nu_t\rangle/\nu = 10$ threshold.  Points are coloured by
+  regime (red: turbulent, blue: laminar).  Non-monotonic behaviour
+  (turbulent--laminar--turbulent) is visible at $(Re, S) = (300, 0.005)$
+  and $(500, 0.01)$.}
+  \label{fig:viscosity-slices}
+  \end{figure*}
+}
+
+\newcommand{\figCriticalLambda}{%
+  \begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{figures-aip/critical_lambda.pdf}
+  \caption{First laminar onset $\Lambda_\ell$ versus $Re$ for
+  $S = 0.005$ and $S = 0.01$.  The onset shifts to lower $\Lambda$ with
+  increasing $Re$, but a single critical value is ill-posed because the
+  transition is non-monotonic at most $(Re, S)$.}
+  \label{fig:critical-lambda}
+  \end{figure}
+}
+
+\newcommand{\figProductionDiagnostics}{%
+  \begin{figure*}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures-aip/production_diagnostics.pdf}
+  \caption{Phase~4 production diagnostics.
+  (a)~Drag coefficient $c_f$ and (b)~cycle-averaged kinetic energy
+  $\langle KE \rangle$ versus viscosity ratio
+  $\langle\nu_t\rangle/\nu$.  Red squares: turbulent; blue circles:
+  laminar.
+  Dashed line: regime threshold at $\langle\nu_t\rangle/\nu = 10$.}
+  \label{fig:production-diagnostics}
+  \end{figure*}
+}
+
+\newcommand{\figPhasePortraits}{%
+  \begin{figure*}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures-aip/phase_portraits.pdf}
+  \caption{Phase portraits $(u_{\mathrm{bed}}, \tau_{\mathrm{bed}})$ for
+  four representative Phase~4 cases.  Triangles mark the starting point.
+  Blue: weakly turbulent ($Re=200$); red: strongly turbulent ($Re \geq 300$).
+  Weakly turbulent cases produce tighter orbits with lower
+  $\tau_{\mathrm{bed}}$ amplitude than the strongly turbulent cases.}
+  \label{fig:phase-portraits}
+  \end{figure*}
+}
+
+\newcommand{\figReentrantProfiles}{%
+  \begin{figure*}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures-aip/reentrant_profiles.pdf}
+  \caption{Cycle-averaged vertical profiles for three cases spanning the
+  re-entrant window at $(Re, S) = (1000, 0.005)$: $\Lambda = 0.1$
+  (turbulent, solid red), $\Lambda = 2.0$ (laminar, solid blue), and
+  $\Lambda = 5.0$ (re-entrant turbulent, dashed red).
+  (a)~Concentration $C(z)$; (b)~gradient Richardson number $Ri_g(z)$,
+  with the critical value $Ri_c = 0.25$ shown as a dotted line;
+  (c)~eddy viscosity $\nu_t(z)$.  At high $\Lambda$, the sharp
+  near-bed concentration gradient reduces outer-layer $Ri_g$ below
+  $Ri_c$, restoring turbulence.}
+  \label{fig:reentrant_profiles}
+  \end{figure*}
+}
+
+\newcommand{\figDampingComparison}{%
+  \begin{figure*}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures-aip/damping_comparison.pdf}
+  \caption{Regime classification on the $(\Lambda,\, Re_\delta)$ plane for
+  linear damping (left) and exponential damping (right) at
+  $S = 0.005$ (top) and $S = 0.01$ (bottom).  Red squares: turbulent;
+  blue circles: laminar.  The transition boundary shifts to moderately
+  higher~$\Lambda$ with exponential damping, but the qualitative topology
+  is preserved.}
+  \label{fig:damping_comparison}
+  \end{figure*}
+}
+
+% ---------------------------------------------------------------------------
+
+\begin{document}
+
+\title{Laminarization Transition in Sediment-Laden Oscillatory Boundary Layers: A Computational Phase Map}
+
+\author{Shmuel Link}
+\email{sglink@gmail.com}
+\affiliation{Independent Researcher, Santa Cruz, California, United States}
+
+\begin{abstract}
+Wave-driven sediment transport models assume that turbulence persists in the
+oscillatory boundary layer, yet field and laboratory observations show that high
+suspended-sediment concentrations can suppress turbulence and trigger a
+laminar-like regime through a positive feedback in which stratification damps
+turbulent mixing, reducing vertical sediment diffusion and thereby reinforcing
+the stratification. We present a systematic computational study of this
+transition using a one-dimensional, vertically resolved model coupling momentum
+and sediment advection--diffusion with an algebraic stratification-damping
+closure. By sweeping the parameter space spanned by the Reynolds number $Re$,
+settling number $S$, and stratification parameter $\Lambda$, we produce a regime
+phase diagram mapping the transition topology $\Lambda_c(Re, S)$, which
+exhibits re-entrant boundaries where turbulence collapses at intermediate
+stratification but recovers at higher $\Lambda$. Because this critical surface depends on the
+adopted closure---here, an algebraic mixing-length model with linear
+Richardson-number damping---$\Lambda_c$ should be regarded as a model-specific
+phase boundary rather than a universal physical constant. Diagnostics include cycle-averaged turbulent
+viscosity ratio, drag coefficient, Reynolds stress, and phase-portrait attractor
+classification.
+\end{abstract}
+
+\maketitle
+
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/model}
+\input{sections/numerics}
+\input{sections/results}
+\input{sections/scaling}
+
+\section*{Data Availability}
+All simulation code and data are publicly available at
+\url{https://github.com/slink/laminarization-transition-study}.
+
+\bibliographystyle{aipnum4-2}
+\bibliography{references}
+
+\end{document}

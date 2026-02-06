@@ -1,0 +1,93 @@
+\section{Model}
+
+\subsection{Governing equations}
+
+We consider a vertically resolved oscillatory boundary layer over a flat
+sediment bed. The horizontal velocity $u(z,t)$ satisfies
+\begin{equation}
+  \partial_t u = F_0 \sin(\omega t)
+  + \partial_z \left[ (\nu + \nu_t) \, \partial_z u \right],
+  \label{eq:momentum}
+\end{equation}
+where $\nu$ is the molecular viscosity and $\nu_t$ is the turbulent eddy
+viscosity. The body-force amplitude is related to the free-stream
+velocity by $F_0 = U_0 \omega$, so that the unobstructed
+(inviscid, unstratified) solution recovers the target oscillation
+$u_\infty = U_0 \sin(\omega t)$; after non-dimensionalization with
+velocity scale~$U_0$ and time scale~$1/\omega$, both $F_0$ and $\omega$
+reduce to unity. The suspended-sediment concentration $C(z,t)$ evolves as
+\begin{equation}
+  \partial_t C + \partial_z (w_s C)
+  = \partial_z \left( D_t \, \partial_z C \right),
+  \label{eq:sediment}
+\end{equation}
+with settling velocity $w_s$ and turbulent diffusivity
+$D_t = \nu_t / Sc_t$.
+
+\subsection{Turbulence closure}
+
+The turbulent viscosity is computed from a Prandtl mixing-length model
+damped by stratification:
+\begin{equation}
+  \nu_t = \kappa^2 z^2 |\partial_z u| \; f(Ri_g),
+  \label{eq:closure}
+\end{equation}
+where $\kappa = 0.41$ is the von K\'arm\'an constant and the damping
+function is
+\begin{equation}
+  f(Ri_g) = \max\!\left(0,\; 1 - \frac{Ri_g}{Ri_c}\right),
+  \qquad
+  Ri_g = \frac{g \beta \, \partial_z C}{(\partial_z u)^2}.
+  \label{eq:damping}
+\end{equation}
+Here $Ri_c \approx 0.25$ is the critical gradient Richardson number.
+Where the local shear falls below a threshold
+$|\partial_z u|^2 < \epsilon = 10^{-10}$, the Richardson number is set
+to zero rather than evaluated, so that the damping function returns
+$f = 1$ and $\nu_t$ is left undamped.  This avoids pathological
+Richardson numbers in quiescent regions where the near-zero denominator
+would otherwise produce spuriously large $Ri_g$ and incorrectly
+suppress turbulent viscosity.  Alternative treatments of this singularity
+exist, including phase-averaged $Ri_g$, capped $Ri_g$, and TKE-based
+damping functions that decouple from instantaneous shear; the present
+choice is the simplest option that preserves turbulence memory across
+flow reversals in a minimal way.
+The location of $\Lambda_c$ is sensitive to this choice at order-unity
+level: for example, exponential damping $f(Ri_g) = \exp(-Ri_g/Ri_c)$
+permits nonzero $\nu_t$ at all $Ri_g$, which would raise $\Lambda_c$
+relative to the linear cutoff used here.
+
+Because $\nu_t$ is proportional to $|\partial_z u|$, it vanishes
+momentarily at every flow reversal regardless of the local
+stratification.  This periodic reset of the turbulent viscosity
+introduces an intrinsic intermittency in the mixing that may contribute
+to the episodic laminarisation events observed near the transition
+boundary (\S\,\ref{sec:nonmono}).
+
+\subsection{Non-dimensionalization}
+
+Using the Stokes layer thickness $\delta = \sqrt{2\nu/\omega}$ as the length
+scale, $U_0$ as the velocity scale, $1/\omega$ as the time scale, and $C_0$
+as the concentration scale, the system is governed by three dimensionless
+groups:
+\begin{equation}
+  Re = \frac{U_0 \delta}{\nu}, \qquad
+  S = \frac{w_s}{U_0}, \qquad
+  \Lambda = \frac{g \beta C_0 \delta}{U_0^2}.
+  \label{eq:params}
+\end{equation}
+Here $\beta = (\rho_s - \rho_f)/\rho_f$ is the submerged specific gravity
+of the sediment (equivalently, $s - 1$ where $s = \rho_s/\rho_f$), so
+that the buoyancy term $g\beta C$ represents the reduced-gravity
+contribution from suspended sediment.
+
+\subsection{Boundary conditions}
+
+At the bed ($z = 0$): no-slip $u = 0$ and fixed reference concentration
+$C = C_{\mathrm{ref}}$. At the domain top ($z = H$): free-slip
+$\partial_z u = 0$ and zero sediment flux $\partial_z C = 0$.
+The concentration scale $C_0$ used to define $\Lambda$ in
+\eqref{eq:params} is identical to the bed boundary value
+$C_{\mathrm{ref}}$; in the non-dimensional system both equal unity, so
+$\Lambda$ directly measures the ratio of buoyancy to inertial forcing
+at the bed.
